@@ -189,7 +189,6 @@
                     Our proposed framework
                 </h3>
                 <image src="img/overview_combined.jpg" width=100% style="display: block; margin: auto;"></image>
-                <br>
                 <p class="text-justify">
                     Given an input video sequence, our method aims to represent the video with a <i>natural</i> canonical image, which is a crucial representation for versatile downstream applications. (a) First, we fine-tune the LoRA weights of a pre-trained latent diffusion model on the input frames. (b) Second, we represent the video using a canonical MLP and a deformation field, which consists of homography estimation and residual deformation MLP for non-rigid residual deformations. By relying entirely on the reconstruction loss, the canonical MLP often fails to represent a natural canonical image, causing problems for downstream applications. <i>E.g.</i>, image-to-image translation methods such as ControlNet may not be able to recognize that there is a train in the canonical image. (c) Therefore, we leverage the fine-tuned latent diffusion model to regularize and correct the unnatural canonical image into a natural one. Specifically, we sophistically design a noise scheduling corresponding to the frame reconstruction process. (d) The natural and artifacts-free canonical image can then be facilitated to various downstream tasks such as video style transfer, dynamic segmentation, and editing, such as adding handwritten characters.
                 </p>
@@ -246,7 +245,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Text-guided video-to-video translation
-                </h3><br>
+                </h3>
 
                 <div class="text-center ">
                     <ul class="nav nav-pills center-pills">
@@ -269,10 +268,10 @@
                 
                 <div class="text-center">
                     <div class="video-container">
-                        <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0" loop playsinline autoplay muted>
+                        <video class="video" style="max-width: 100%;" m id="compVideo0" loop playsinline autoplay muted>
                             <source src="videos/styletransfer_bear_codef_vs_ours_video.mp4" />
                         </video>
-                        <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1" loop playsinline autoplay muted hidden>
+                        <video class="video" style="max-width: 100%;" id="compVideo1" loop playsinline autoplay muted hidden>
                             <source src="videos/styletransfer_bear_codef_vs_ours_canonical.mp4" />
                         </video>
                     </div>
@@ -294,7 +293,6 @@
                     </div>
 
 
-                    <br>
                     <p class="text-justify" style="text-align: center;">
                         Text prompt: <span id="textPrompt"><strong>A Van Gogh-style cartoon bear walking in the forest.</strong></span><br>
                         Baseline method (left) vs NaRCan (right). Try selecting different methods and scenes!
@@ -357,7 +355,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Adding handwritten characters
-                </h3><br>
+                </h3>
 
                 <div class="text-center ">
                     <ul class="nav nav-pills center-pills">
@@ -380,10 +378,10 @@
                 
                 <div class="text-center">
                     <div class="video-container">
-                        <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0_handwrite" loop playsinline autoplay muted>
+                        <video class="video" style="max-width: 100%;" m id="compVideo0_handwrite" loop playsinline autoplay muted>
                             <source src="videos/handwrite_train_codef_vs_ours_video.mp4" />
                         </video>
-                        <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1_handwrite" loop playsinline autoplay muted hidden>
+                        <video class="video" style="max-width: 100%;" id="compVideo1_handwrite" loop playsinline autoplay muted hidden>
                             <source src="videos/handwrite_train_codef_vs_ours_canonical.mp4" />
                         </video>
                     </div>
@@ -405,7 +403,6 @@
                     </div>
 
 
-                    <br>
                     <p class="text-justify" style="text-align: center;">
                         Baseline method (left) vs NaRCan (right). Try selecting different methods and scenes!
                     </p>
@@ -443,7 +440,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     Segmentation-based tracking
-                </h3><br>
+                </h3>
 
                 <div class="text-center ">
                     <ul class="nav nav-pills center-pills">
@@ -466,10 +463,10 @@
                 
                 <div class="text-center">
                     <div class="video-container">
-                        <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0_dynamic" loop playsinline autoplay muted>
+                        <video class="video" style="max-width: 100%;" m id="compVideo0_dynamic" loop playsinline autoplay muted>
                             <source src="videos/dynamic_coral-reef_codef_vs_ours_video.mp4" />
                         </video>
-                        <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1_dynamic" loop playsinline autoplay muted hidden>
+                        <video class="video" style="max-width: 100%;" id="compVideo1_dynamic" loop playsinline autoplay muted hidden>
                             <source src="videos/dynamic_coral-reef_codef_vs_ours_canonical.mp4" />
                         </video>
                     </div>
@@ -491,7 +488,6 @@
                     </div>
 
 
-                    <br>
                     <p class="text-justify" style="text-align: center;">
                         Baseline method (left) vs NaRCan (right). The segmentation mask is acquired using the <a href="https://segment-anything.com/">Segment Anything Model (SAM)</a> based on the learned canonical image and propagated to the sequence. Try selecting different methods and scenes!
                     </p>
