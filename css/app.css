@@ -301,6 +301,14 @@ input:checked + .slider:after
   background: #1772d0;
 }
 
+.scene-pills-handwrite > .active {
+  background: #1772d0;
+}
+
+.scene-pills-dynamic > .active {
+  background: #1772d0;
+}
+
 /* .mode-pills > .active {
   background: #1772d0;
 } */

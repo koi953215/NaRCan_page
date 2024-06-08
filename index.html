@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:image" content="https://github.com/koi953215/NaRCan_page/img/overview_combined.jpg">
+    <meta property="og:image" content="https://github.com/koi953215/NaRCan_page/blob/main/img/overview_combined.jpg">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1296">
     <meta property="og:image:height" content="840">
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="NaRCan: Natural Refined Canonical Image with Integration of Diffusion Prior for Video Editing" />
     <meta name="twitter:description" content="Video editing approaches, especially through image-based diffusion models, have seen significant advancements but struggle with temporal consistency in video-to-video tasks. Existing models often fail to maintain sequence temporal consistency, disrupting frame transitions. To tackle this issue, this paper introduces NaRCan, a video editing framework that integrates a hybrid deformation field network with diffusion priors. Unlike conventional methods that generate a canonical image as a singular representation of video content, our approach ensures the production of high-quality, natural canonical images, which are crucial for downstream tasks like handwriting, style transfer, and dynamic segmentation. By leveraging a hybrid deformation field module and a sophisticated-designed scheduling method, NaRCan offers improved adaptability and superior editing capabilities across various video editing applications. Extensive experimental results show that our method outperforms existing approaches in producing coherent and high-quality video sequences. This work advances the state of video editing approaches and provides a robust solution for maintaining sequence temporal consistency using diffusion-based methods." />
-    <meta name="twitter:image" content="https://github.com/koi953215/NaRCan_page/img/overview_combined.jpg" />
+    <meta name="twitter:image" content="https://github.com/koi953215/NaRCan_page/blob/main/img/overview_combined.jpg" />
 
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
@@ -233,8 +233,8 @@
                     <ul class="nav nav-pills center-pills">
                         <li class="method-pill" data-value="input"
                             onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>Input</a></li>
-                            <li class="method-pill" data-value="hash"
-                                onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>Hashing-nvd</a></li>
+                        <li class="method-pill" data-value="hash"
+                            onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>Hashing-nvd</a></li>
                         <li class="method-pill active" data-value="codef"
                             onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>CoDeF</a></li>
                         <li class="method-pill" data-value="medm"
@@ -251,10 +251,10 @@
                 <div class="text-center">
                     <div class="video-container">
                         <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0" loop playsinline autoplay muted>
-                            <source src="videos/styletransfer_bear_hash_vs_ours_video.mp4" />
+                            <source src="videos/styletransfer_bear_codef_vs_ours_video.mp4" />
                         </video>
                         <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1" loop playsinline autoplay muted hidden>
-                            <source src="videos/comparison/mipnerf360_bonsai_zipnerf_vs_ours_depth.mp4" />
+                            <source src="videos/styletransfer_bear_codef_vs_ours_canonical.mp4" />
                         </video>
                     </div>
                     <div class="text-center" style="color: black;" id="mode-pills">
@@ -277,7 +277,7 @@
 
                     <br>
                     <p class="text-justify" style="text-align: center;">
-                        Text prompt: <span id="textPrompt">1</span><br>
+                        Text prompt: <span id="textPrompt"><strong>A Van Gogh-style cartoon bear walking in the forest.</strong></span><br>
                         Baseline method (left) vs NaRCan (right). Try selecting different methods and scenes!
                     </p>
                     <script>
@@ -305,19 +305,19 @@
 
                     <div class="pill-row scene-pills" id="scene-pills">
                         <span class="pill scene-pill active" data-value="bear" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
-                            <img class="thumbnail-img" src="thumbnails/dtu_scan31_thumbnail.jpg" alt="DTU/scan31" width="64">
+                            <img class="thumbnail-img" src="thumbnails/styletransfer_bear_thumbnail.jpg" alt="DTU/scan31" width="64">
                         </span>
                         <span class="pill scene-pill" data-value="boat" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
-                            <img class="thumbnail-img" src="thumbnails/dtu_scan45_thumbnail.jpg" alt="DTU/scan45" width="64">
+                            <img class="thumbnail-img" src="thumbnails/styletransfer_boat_thumbnail.jpg" alt="DTU/scan45" width="64">
                         </span>
                         <span class="pill scene-pill" data-value="hot-air-ballon" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
-                            <img class="thumbnail-img" src="thumbnails/llff_fern_thumbnail.jpg" alt="LLFF/fern" width="64">
+                            <img class="thumbnail-img" src="thumbnails/styletransfer_hot-air-ballon_thumbnail.jpg" alt="LLFF/fern" width="64">
                         </span>
                         <span class="pill scene-pill" data-value="overlook-the-ocean" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
-                            <img class="thumbnail-img" src="thumbnails/llff_horns_thumbnail.jpg" alt="LLFF/horns" width="64">
+                            <img class="thumbnail-img" src="thumbnails/styletransfer_overlook-the-ocean_thumbnail.jpg" alt="LLFF/horns" width="64">
                         </span>
                         <span class="pill scene-pill" data-value="shark-ocean" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
-                            <img class="thumbnail-img" src="thumbnails/re10k_00e8df74b6805da7_thumbnail.jpg" alt="Re10K/sofa" width="64">
+                            <img class="thumbnail-img" src="thumbnails/styletransfer_shark-ocean_thumbnail.jpg" alt="Re10K/sofa" width="64">
                         </span>
                     </div>
 
@@ -330,226 +330,188 @@
             </div>
         </div>
         <br>
-        <br>
-
-
-
-
-
-
+        
 
 
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-				  ReconFusion improves both few-view and many-view reconstruction
+                    Adding handwritten characters
                 </h3><br>
-                <!-- <p class="text-justify" style="color:red">
-                    Hover over the plot to show rendered video under different number of views.
-                </p> -->
-                
-                <!-- top down layout -->
-                <canvas id="sparsityChart" style="max-height: 300px; max-width: 500px; margin: auto;"></canvas>
-                <script src="js/sparsity_chart.js"></script>
-                <br>
-                <p class="text-center">
-                    Our diffusion prior improves performance over baseline Zip-NeRF in both the few-view and many-view sampling regimes.
-                </p>
-    
-                <div class="text-center">
-                    <div class="video-compare-container" id="materialsDiv">
-                        <video class="video" id="sparsity" loop playsinline autoPlay muted src="videos/sparsity/stacked_vid.mp4" onplay="resizeAndPlay(this)"></video>
-                        <canvas height=0 class="videoMerge" id="sparsityMerge"></canvas>
-                    </div>
-                    <!-- <canvas height=0 class="videoWrapper" id="sparsityVideoWrapper"></canvas> -->
-			<em>Move the slider to adjust the number of views. The left column shows the nearest input view.</em>
-                    <div class="slider-container" style="padding-left: 12%; padding-right: 11%;">
-                        <input type="range" class="styled-slider" id="sparsitySlider" min="0" max="6" step="1" value="0" list="slider-labels">
-                        <datalist id="slider-labels">
-                            <option value="0">3</option>
-                            <option value="1">6</option>
-                            <option value="2">9</option>
-                            <option value="3">18</option>
-                            <option value="4">27</option>
-                            <option value="5">54</option>
-                            <option value="6">81</option>
-                        </datalist>
-                    </div>
-                    <table style="text-align: left; padding-left: 0px; padding-right: 10%; width: 100%;">
-                        <tr>
-                            <th width="10%"></th>
-                            <td width="10%">3</td>
-                            <td width="10%">6</td>
-                            <td width="10%">9</td>
-                            <td width="10%">18</td>
-                            <td width="10%">27</td>
-                            <td width="10%">54</td>
-                            <td width="10%">81</td>
-                        </tr>
-                    </table><br>
-                    <!-- <div class="text-center">
-                        Rendered video under <span id="sparsityValue" style="color: red;">3</span> views
-                    </div> -->
+
+                <div class="text-center ">
+                    <ul class="nav nav-pills center-pills">
+                        <li class="method-pill-handwrite" data-value="input"
+                            onclick="selectCompVideoHandwrite('handwrite', this, activeScenePillHandwrite)"><a>Input</a></li>
+                        <li class="method-pill-handwrite" data-value="hash"
+                            onclick="selectCompVideoHandwrite('handwrite', this, activeScenePillHandwrite)"><a>Hashing-nvd</a></li>
+                        <li class="method-pill-handwrite active" data-value="codef"
+                            onclick="selectCompVideoHandwrite('handwrite', this, activeScenePillHandwrite)"><a>CoDeF</a></li>
+                        <li class="method-pill-handwrite" data-value="medm"
+                            onclick="selectCompVideoHandwrite('handwrite', this, activeScenePillHandwrite)"><a>MeDM</a></li>
+                    </ul>
                 </div>
-                
-                <!-- left right layout -->
-                <!-- <table style="width: 100%; border-collapse: collapse;">
-                    <tr>
-                      <td style="text-align: center;" >
-                        <canvas id="sparsityChart" style="max-height: 250px; max-width: 200px; margin: auto;"></canvas>
-                        <script src="js/sparsity_chart.js"></script>
-                      </td>
-                      <td style="text-align: center;">
-                        <video class="video" width=100% id="sparsityVideo" loop playsinline autoplay muted onplay="playOnCanvas(this, 180)">
-                            <source src="videos/sparsity/kitchenlego_3.mp4" type="video/mp4" />
-                        </video>
-                        <canvas height=0 class="videoWrapper" id="sparsityVideoWrapper"></canvas>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="text-align: center;"></td>
-                      <td style="text-align: center;">Rendered video under <span id="sparsityValue" style="color: red;">3</span> views</td>
-                    </tr>
-                </table> -->
-<br>
-            </div>
-        </div><br><br>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h3>
-                    ReconFusion distills a consistent 3D model from inconsistent samples
-                </h3><br>
+                <script>
+                    activeMethodPillHandwrite = document.querySelector('.method-pill-handwrite.active-pill');
+                    activeScenePillHandwrite = document.querySelector('.scene-pill-handwrite.active-pill');
+                    activeModePillHandwrite = document.querySelector('.mode-pill-handwrite.active-pill');
+                </script>
                 
-                <table style="margin-left: auto; margin-right: auto; width: 90%;">
-                    <tr>
-                      <th style="width: 4%;"></th>
-                      <th style="text-align: center;width: 32%;">LLFF (3 views)</th>
-                      <th style="text-align: center;width: 32%;">CO3D (6 views)</th>
-					  <th style="text-align: center;width: 32%;">mip-NeRF 360 (9 views)</th>
-                    </tr>
-                    <tr>
-                      <td style="text-align: center; writing-mode: vertical-lr; transform: rotate(180deg); width:4%">3D Reconstruction</td>
-                      <td rowspan="2" colspan="3" style="width: 96%">
-                        <video class="video" width=100% loop playsinline autoplay muted controls>
-                            <source src="videos/ablation/recon_vs_samples.mp4" />
-                        </video>
-                      </td>
-                      <!-- <td style="text-align: center;">
-                        <video class="video" width=100% loop playsinline autoplay muted style="max-height: 150px;">
-                            <source src="videos/ablation/z123_nerf.mp4" />
-                        </video>
-                      </td>
-                      <td style="text-align: center;">
-                        <video class="video" width=100% loop playsinline autoplay muted style="max-height: 150px;">
-                            <source src="videos/ablation/scratch_nerf.mp4" />
-                        </video>
-                      </td>
-                      <td style="text-align: center;">
-                        <video class="video" width=100% loop playsinline autoplay muted style="max-height: 150px;">
-                            <source src="videos/ablation/ours_nerf.mp4" />
-                        </video>
-                      </td> -->
-                    </tr>
-                    <tr>
-					  <td style="text-align: center; writing-mode: vertical-lr; transform: rotate(180deg); width:4%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Samples&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td></td>
-                      <!-- <td style="text-align: center;">
-                        <video class="video" width=100% loop playsinline autoplay muted style="max-height: 150px;">
-                            <source src="videos/ablation/z123_samples.mp4" />
-                        </video>
-                      </td>
-                      <td style="text-align: center;">
-                        <video class="video" width=100% loop playsinline autoplay muted style="max-height: 150px;">
-                            <source src="videos/ablation/scratch_samples.mp4" />
-                        </video>
-                      </td>
-                      <td style="text-align: center;">
-                        <video class="video" width=100% loop playsinline autoplay muted style="max-height: 150px;">
-                            <source src="videos/ablation/ours_samples.mp4" />
-                        </video>
-                      </td> -->
-                    </tr>
-                </table>
-                <br>
-<!-- 
-                <p class="text-justify" style="width: 85%; margin: auto;"> -->
-                <p class="text-justify" style="width:85%; margin:auto">
-                    ReconFusion recovers consistent 3D reconstructions (top) from a diffusion model that produces image samples independently for each viewpoint (bottom). These samples are not multiview consistent, but can produce high-quality 3D reconstructions when used as a prior in optimization.
-                </p>
-            </div>
-        </div>
-        <br>
-        <br>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Video
-                </h3>
                 <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
-                        <iframe src="https://youtube.com/embed/xrrhynRzC8k" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    <div class="video-container">
+                        <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0_handwrite" loop playsinline autoplay muted>
+                            <source src="videos/handwrite_train_codef_vs_ours_video.mp4" />
+                        </video>
+                        <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1_handwrite" loop playsinline autoplay muted hidden>
+                            <source src="videos/handwrite_train_codef_vs_ours_canonical.mp4" />
+                        </video>
                     </div>
+                    <div class="text-center" style="color: black;" id="mode-pills">
+                        <div class="btn-group btn-group-sm">
+                            <span class="btn btn-primary mode-pill-handwrite active" data-value="video"
+                                onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, activeScenePillHandwrite, null, this)">
+                                Edited video
+                            </span>
+                            <span class="btn btn-primary mode-pill-handwrite" data-value="canonical"
+                                onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, activeScenePillHandwrite, null, this)">
+                                Canonical image
+                            </span>
+                            <span class="btn btn-primary mode-pill-handwrite" data-value="canonical_edit"
+                                onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, activeScenePillHandwrite, null, this)">
+                                Edited canonical image
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <p class="text-justify" style="text-align: center;">
+                        Baseline method (left) vs NaRCan (right). Try selecting different methods and scenes!
+                    </p>
+                    
+                    <div class="pill-row scene-pills-handwrite" id="scene-pills-handwrite">
+                        <span class="pill scene-pill-handwrite active" data-value="train" onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/handwrite_train_thumbnail.jpg" alt="DTU/scan31" width="64">
+                        </span>
+                        <span class="pill scene-pill-handwrite" data-value="camel" onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/handwrite_camel_thumbnail.jpg" alt="DTU/scan45" width="64">
+                        </span>
+                        <span class="pill scene-pill-handwrite" data-value="cat" onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/handwrite_cat_thumbnail.jpg" alt="LLFF/fern" width="64">
+                        </span>
+                        <span class="pill scene-pill-handwrite" data-value="car-turn" onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/handwrite_car-turn_thumbnail.jpg" alt="LLFF/horns" width="64">
+                        </span>
+                        <span class="pill scene-pill-handwrite" data-value="tiger" onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/handwrite_tiger_thumbnail.jpg" alt="Re10K/sofa" width="64">
+                        </span>
+                    </div>
+
+                    <script>
+                        activeMethodPillHandwrite = document.querySelector('.method-pill-handwrite.active-pill');
+                        activeScenePillHandwrite = document.querySelector('.scene-pill-handwrite.active-pill');
+                        activeModePillHandwrite = document.querySelector('.mode-pill-handwrite.active-pill');
+                    </script>
                 </div>
             </div>
         </div>
-<br>
+        <br>
+
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Multisampling
-                </h3>
-				<table style="width: 100%; border-collapse: collapse;">
-				  <tr>
-				    <td style="text-align: center;">
-		                <video id="v0" width="100%" autoplay loop muted>
-		                  <source src="img/hexify_train.mp4" type="video/mp4" />
-		                </video>
-					</td>
-				    <td style="text-align: center;">
-		                <video id="v0" width="100%" autoplay loop muted>
-		                  <source src="img/hexify_test.mp4" type="video/mp4" />
-		                </video>
-					</td>
-				  </tr>
-				  <tr>
-				    <td style="text-align: center;">When Training</td>
-				    <td style="text-align: center;">When Rendering</td>
-				  </tr>
-				</table>
-                <p class="text-justify">
-                    We use multisampling to approximate the average NGP feature over a conical frustum, by constructing a 6-sample pattern that exactly matches the frustum's first and second moments. When training, we randomly rotate and flip (along the ray axis) each pattern, and when rendering we deterministically flip and rotate each adjacent pattern by 30 degrees.
-                </p>
+                    Segmentation-based tracking
+                </h3><br>
+
+                <div class="text-center ">
+                    <ul class="nav nav-pills center-pills">
+                        <li class="method-pill-dynamic" data-value="input"
+                            onclick="selectCompVideoDynamic('dynamic', this, activeScenePillDynamic)"><a>Input</a></li>
+                        <li class="method-pill-dynamic" data-value="hash"
+                            onclick="selectCompVideoDynamic('dynamic', this, activeScenePillDynamic)"><a>Hashing-nvd</a></li>
+                        <li class="method-pill-dynamic active" data-value="codef"
+                            onclick="selectCompVideoDynamic('dynamic', this, activeScenePillDynamic)"><a>CoDeF</a></li>
+                        <li class="method-pill-dynamic" data-value="medm"
+                            onclick="selectCompVideoDynamic('dynamic', this, activeScenePillDynamic)"><a>MeDM</a></li>
+                    </ul>
+                </div>
+
+                <script>
+                    activeMethodPillDynamic = document.querySelector('.method-pill-dynamic.active-pill');
+                    activeScenePillDynamic = document.querySelector('.scene-pill-dynamic.active-pill');
+                    activeModePillDynamic = document.querySelector('.mode-pill-dynamic.active-pill');
+                </script>
+                
+                <div class="text-center">
+                    <div class="video-container">
+                        <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0_dynamic" loop playsinline autoplay muted>
+                            <source src="videos/dynamic_coral-reef_codef_vs_ours_video.mp4" />
+                        </video>
+                        <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1_dynamic" loop playsinline autoplay muted hidden>
+                            <source src="videos/dynamic_coral-reef_codef_vs_ours_canonical.mp4" />
+                        </video>
+                    </div>
+                    <div class="text-center" style="color: black;" id="mode-pills">
+                        <div class="btn-group btn-group-sm">
+                            <span class="btn btn-primary mode-pill-dynamic active" data-value="video"
+                                onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, activeScenePillDynamic, null, this)">
+                                Edited video
+                            </span>
+                            <span class="btn btn-primary mode-pill-dynamic" data-value="canonical"
+                                onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, activeScenePillDynamic, null, this)">
+                                Canonical image
+                            </span>
+                            <span class="btn btn-primary mode-pill-dynamic" data-value="canonical_edit"
+                                onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, activeScenePillDynamic, null, this)">
+                                Segmentation mask
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <p class="text-justify" style="text-align: center;">
+                        Baseline method (left) vs NaRCan (right). The segmentation mask is acquired using Segment Anything (SAM) based on the learned canonical image and propagated to the sequence. Try selecting different methods and scenes!
+                    </p>
+                    
+                    <div class="pill-row scene-pills-dynamic" id="scene-pills-dynamic">
+                        <span class="pill scene-pill-dynamic active" data-value="coral-reef" onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/dynamic_coral-reef_thumbnail.jpg" alt="DTU/scan31" width="64">
+                        </span>
+                        <span class="pill scene-pill-dynamic" data-value="butterfly" onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/dynamic_butterfly_thumbnail.jpg" alt="DTU/scan45" width="64">
+                        </span>
+                        <span class="pill scene-pill-dynamic" data-value="two-swan" onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/dynamic_two-swan_thumbnail.jpg" alt="LLFF/fern" width="64">
+                        </span>
+                        <span class="pill scene-pill-dynamic" data-value="woman-drink" onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/dynamic_woman-drink_thumbnail.jpg" alt="LLFF/horns" width="64">
+                        </span>
+                        <span class="pill scene-pill-dynamic" data-value="surf" onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, this, 3)">
+                            <img class="thumbnail-img" src="thumbnails/dynamic_surf_thumbnail.jpg" alt="Re10K/sofa" width="64">
+                        </span>
+                    </div>
+
+                    <script>
+                        activeMethodPillDynamic = document.querySelector('.method-pill-dynamic.active-pill');
+                        activeScenePillDynamic = document.querySelector('.scene-pill-dynamic.active-pill');
+                        activeModePillDynamic = document.querySelector('.mode-pill-dynamic.active-pill');
+                    </script>
+                </div>
             </div>
         </div>
-<br>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    XY aliasing
-                </h3>
-                <video class="video" width=100% id="xyalias" loop playsinline autoplay muted src="img/xy_alias_swipe_crf27.mp4" onplay="resizeAndPlay(this)"></video>
-                <canvas height=0 class="videoMerge" id="xyaliasMerge"></canvas>
-                <p class="text-justify">
-                    A naive baseline (left) combining mip-NeRF 360 and Instant NGP results in aliasing as the camera moves laterally. Our full method (right) produces prefiltered renderings that do not flicker or shimmer.
-                </p>
-            </div>
-        </div>
-           
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Z aliasing
-                </h3>
-                <video id="v0" width="100%" autoplay loop muted>
-                  <source src="img/z_alias_pdf_labeled.m4v" type="video/mp4" />
-                </video>
-                <p class="text-justify">
-                    The proposal network used for resampling points along rays in mip-NeRF 360 results in an artifact we refer to as <em>z-aliasing</em>, where foreground content alternately appears and disappears as the camera moves toward or away from scene content. Z-aliasing occurs when the initial set of samples from the proposal network is not dense enough and misses thin structures, such as the chair above. Missed content can not be recovered by later rounds of sampling, since no future samples will be placed at that location along the ray. Our improvements to proposal network supervision result in a prefiltered proposal output that preserves the foreground object for all frames in this sequence. The plots above depict samples along a ray for three rounds of resampling (blue, orange, and green lines), with the y axis showing rendering weight (how much each interval contributes to the final rendered color), as a normalized probability density.
-                </p>
-            </div>
-        </div>
+        <br>
+
+
+
+
+
+
+
+
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">

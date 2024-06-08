@@ -44,66 +44,134 @@ def draw_text(img, text,
 
     return text_size, img
 
-tasks = ['styletransfer', 'handwrite', 'dynamic']
-scenes = ['bear', 'boat', 'hot-air-ballon', 'overlook-the-ocean', 'shark-ocean']
-other_methods = ['input', 'hash', 'codef', 'medm']
+# task = 'styletransfer'
+# scenes = ['bear', 'boat', 'hot-air-ballon', 'overlook-the-ocean', 'shark-ocean']
+# other_methods = ['input', 'hash', 'codef', 'medm']
 
-
-for task in tasks:
+def parse_one_task(task, scenes, other_methods):
     for scene in scenes:
         for other_method in other_methods:
-            H = 432
-            W = 768
-            fps = 20.0
-            ours_video_path = './styletransfer/'+scene+'_ours.mp4'
-            cap_ours = cv2.VideoCapture(ours_video_path)
-            other_video_path = './styletransfer/'+scene+'_'+other_method+'.mp4'
-            cap_other = cv2.VideoCapture(other_video_path)
-            
-            # Define the codec and create VideoWriter object
-            fourcc = cv2.VideoWriter_fourcc(*'XVID')
-            out = cv2.VideoWriter(task+'_'+scene+'_'+other_method+'_vs_ours_video.avi', fourcc, fps, (2*W,  H))
-            while cap_ours.isOpened() and cap_other.isOpened():
-                ret_ours, frame_ours = cap_ours.read()
-                ret_other, frame_other = cap_other.read()
-                if not ret_ours or not ret_other:
-                    print("Can't receive frame (stream end?). Exiting ...")
-                    break
-            
-                # edit here
-                _, frame_ours = draw_text(frame_ours, "Ours", height=H, width=W, align='right')
-                if other_method is 'hash':
-                    _, frame_other = draw_text(frame_other, "Hashing-nvd", height=H, width=W, align='left')
-                if other_method is 'input':
-                    _, frame_other = draw_text(frame_other, "Input", height=H, width=W, align='left')
-                if other_method is 'codef':
-                    _, frame_other = draw_text(frame_other, "CoDeF", height=H, width=W, align='left')
-                if other_method is 'medm':
-                    _, frame_other = draw_text(frame_other, "MeDM", height=H, width=W, align='left')
-            
-                frame = cv2.hconcat([frame_other, frame_ours]) 
-            
-                out.write(frame)
-            
-            cap_ours.release()
-            cap_other.release()
-            out.release()
-            cv2.destroyAllWindows()
+            other_video_path = './'+task+'/'+scene+'_'+other_method+'.mp4'
 
-            os.system('ffmpeg -y -i '+task+'_'+scene+'_'+other_method+'_vs_ours_video.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p '+task+'_'+scene+'_'+other_method+'_vs_ours_video.mp4')
+            if os.path.isfile(other_video_path):
+                H = 432
+                W = 768
+                fps = 20.0
+                ours_video_path = './'+task+'/'+scene+'_ours.mp4'
+                cap_ours = cv2.VideoCapture(ours_video_path)
+                
+                cap_other = cv2.VideoCapture(other_video_path)
+                
+                # Define the codec and create VideoWriter object
+                fourcc = cv2.VideoWriter_fourcc(*'XVID')
+                out = cv2.VideoWriter(task+'_'+scene+'_'+other_method+'_vs_ours_video.avi', fourcc, fps, (2*W,  H))
+                while cap_ours.isOpened() and cap_other.isOpened():
+                    ret_ours, frame_ours = cap_ours.read()
+                    ret_other, frame_other = cap_other.read()
+                    if not ret_ours or not ret_other:
+                        print("Can't receive frame (stream end?). Exiting ...")
+                        break
+                    
+                    if frame_ours.shape[0] != 432 or frame_ours.shape[1] != 768:
+                        frame_ours = cv2.resize(frame_ours, (768, 432), interpolation=cv2.INTER_AREA)
+                    if frame_other.shape[0] != 432 or frame_other.shape[1] != 768:
+                        frame_other = cv2.resize(frame_other, (768, 432), interpolation=cv2.INTER_AREA)
+                    
+                    
+                    
+
+                
+                    # edit here
+                    _, frame_ours = draw_text(frame_ours, "Ours", height=H, width=W, align='right')
+                    if other_method is 'hash':
+                        _, frame_other = draw_text(frame_other, "Hashing-nvd", height=H, width=W, align='left')
+                    if other_method is 'input':
+                        _, frame_other = draw_text(frame_other, "Input", height=H, width=W, align='left')
+                    if other_method is 'codef':
+                        _, frame_other = draw_text(frame_other, "CoDeF", height=H, width=W, align='left')
+                    if other_method is 'medm':
+                        _, frame_other = draw_text(frame_other, "MeDM", height=H, width=W, align='left')
+                
+                    frame = cv2.hconcat([frame_other, frame_ours]) 
+                
+                    out.write(frame)
+                
+                cap_ours.release()
+                cap_other.release()
+                out.release()
+                cv2.destroyAllWindows()
+
+                os.system('ffmpeg -y -i '+task+'_'+scene+'_'+other_method+'_vs_ours_video.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p '+task+'_'+scene+'_'+other_method+'_vs_ours_video.mp4')
+            else:
+                ## handling medm for handwrite
+                H = 432
+                W = 768
+                fps = 20.0
+                ours_video_path = './'+task+'/'+scene+'_ours.mp4'
+                cap_ours = cv2.VideoCapture(ours_video_path)
+                
+                # Define the codec and create VideoWriter object
+                fourcc = cv2.VideoWriter_fourcc(*'XVID')
+                out = cv2.VideoWriter(task+'_'+scene+'_'+other_method+'_vs_ours_video.avi', fourcc, fps, (2*W,  H))
+                while cap_ours.isOpened():
+                    ret_ours, frame_ours = cap_ours.read()
+                    if not ret_ours:
+                        print("Can't receive frame (stream end?). Exiting ...")
+                        break
+                    
+                    if frame_ours.shape[0] != 432 or frame_ours.shape[1] != 768:
+                        frame_ours = cv2.resize(frame_ours, (768, 432), interpolation=cv2.INTER_AREA)
+                    
+                    frame_other = np.ones((432, 768, 3), np.uint8)*255
+                    font = cv2.FONT_HERSHEY_SIMPLEX
+                    text = "Cannot add handwritten characters"
+                    textsize = cv2.getTextSize(text, font, 1, 2)[0]
+                    textX = (768 - textsize[0]) // 2
+                    textY = (432 + textsize[1]) // 2
+
+                    # add text centered on image
+                    cv2.putText(frame_other, text, (textX, textY), font, 1, (0, 0, 0), 2)
+                    
+
+                
+                    # edit here
+                    _, frame_ours = draw_text(frame_ours, "Ours", height=H, width=W, align='right')
+                    if other_method is 'hash':
+                        _, frame_other = draw_text(frame_other, "Hashing-nvd", height=H, width=W, align='left')
+                    if other_method is 'input':
+                        _, frame_other = draw_text(frame_other, "Input", height=H, width=W, align='left')
+                    if other_method is 'codef':
+                        _, frame_other = draw_text(frame_other, "CoDeF", height=H, width=W, align='left')
+                    if other_method is 'medm':
+                        _, frame_other = draw_text(frame_other, "MeDM", height=H, width=W, align='left')
+                
+                    frame = cv2.hconcat([frame_other, frame_ours]) 
+                
+                    out.write(frame)
+                
+                cap_ours.release()
+                out.release()
+                cv2.destroyAllWindows()
+
+                os.system('ffmpeg -y -i '+task+'_'+scene+'_'+other_method+'_vs_ours_video.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p '+task+'_'+scene+'_'+other_method+'_vs_ours_video.mp4')
+            
+            
+            
 
             ## canonical image
             H = 600
             W = 600
             fps = 20.0
-            ours_canonical_path = './styletransfer/'+scene+'_ours_canonical.png'
-            other_canonical_path = './styletransfer/'+scene+'_'+other_method+'_canonical.png'
+            ours_canonical_path = './'+task+'/'+scene+'_ours_canonical.png'
+            other_canonical_path = './'+task+'/'+scene+'_'+other_method+'_canonical.png'
             # Define the codec and create VideoWriter object
             fourcc = cv2.VideoWriter_fourcc(*'XVID')
             out = cv2.VideoWriter(task+'_'+scene+'_'+other_method+'_vs_ours_canonical.avi', fourcc, fps, (2*W,  H))
             print(other_method)
             for i in range(5):
                 frame_ours = cv2.imread(ours_canonical_path)
+                if frame_ours.shape[0] != 600 or frame_ours.shape[1] != 600:
+                    frame_ours = cv2.resize(frame_ours, (600, 600), interpolation=cv2.INTER_CUBIC)
                 if other_method is 'input' or other_method is 'medm':
                     frame_other = np.ones((600, 600, 3), np.uint8)*255
                     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -141,13 +209,15 @@ for task in tasks:
             H = 600
             W = 600
             fps = 20.0
-            ours_canonical_path = './styletransfer/'+scene+'_ours_canonical_edit.png'
-            other_canonical_path = './styletransfer/'+scene+'_'+other_method+'_canonical_edit.png'
+            ours_canonical_path = './'+task+'/'+scene+'_ours_canonical_edit.png'
+            other_canonical_path = './'+task+'/'+scene+'_'+other_method+'_canonical_edit.png'
             # Define the codec and create VideoWriter object
             fourcc = cv2.VideoWriter_fourcc(*'XVID')
             out = cv2.VideoWriter(task+'_'+scene+'_'+other_method+'_vs_ours_canonical_edit.avi', fourcc, fps, (2*W,  H))
             for i in range(5):
                 frame_ours = cv2.imread(ours_canonical_path)
+                if frame_ours.shape[0] != 600 or frame_ours.shape[1] != 600:
+                    frame_ours = cv2.resize(frame_ours, (600, 600), interpolation=cv2.INTER_CUBIC)
                 if other_method is 'input' or other_method is 'medm':
                     frame_other = np.ones((600, 600, 3), np.uint8)*255
                     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -180,3 +250,10 @@ for task in tasks:
             out.release()
             cv2.destroyAllWindows()
             os.system('ffmpeg -y -i '+task+'_'+scene+'_'+other_method+'_vs_ours_canonical_edit.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p '+task+'_'+scene+'_'+other_method+'_vs_ours_canonical_edit.mp4')
+
+            # get thumbnail images
+            os.system('ffmpeg -y -i ./'+task+'/'+scene+'_input.mp4 -vf "select=eq(n\,0)" -q:v 3 ../thumbnails/'+task+'_'+scene+'_thumbnail.jpg')
+
+parse_one_task('styletransfer', ['bear', 'boat', 'hot-air-ballon', 'overlook-the-ocean', 'shark-ocean'], ['input', 'hash', 'codef', 'medm'])
+parse_one_task('handwrite', ['train', 'camel', 'cat', 'car-turn', 'tiger'], ['input', 'hash', 'codef', 'medm'])
+parse_one_task('dynamic', ['coral-reef', 'butterfly', 'two-swan', 'woman-drink', 'surf'], ['input', 'hash', 'codef', 'medm'])
