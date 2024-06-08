@@ -124,7 +124,10 @@ def parse_one_task(task, scenes, other_methods):
                     
                     frame_other = np.ones((432, 768, 3), np.uint8)*255
                     font = cv2.FONT_HERSHEY_SIMPLEX
-                    text = "Cannot add handwritten characters"
+                    if task is 'handwrite':
+                        text = "Cannot add handwritten characters"
+                    elif task is 'dynamic':
+                        text = "Cannot segment dynamic objects"
                     textsize = cv2.getTextSize(text, font, 1, 2)[0]
                     textX = (768 - textsize[0]) // 2
                     textY = (432 + textsize[1]) // 2
@@ -254,6 +257,6 @@ def parse_one_task(task, scenes, other_methods):
             # get thumbnail images
             os.system('ffmpeg -y -i ./'+task+'/'+scene+'_input.mp4 -vf "select=eq(n\,0)" -q:v 3 ../thumbnails/'+task+'_'+scene+'_thumbnail.jpg')
 
-parse_one_task('styletransfer', ['bear', 'boat', 'hot-air-ballon', 'overlook-the-ocean', 'shark-ocean'], ['input', 'hash', 'codef', 'medm'])
-parse_one_task('handwrite', ['train', 'camel', 'cat', 'car-turn', 'tiger'], ['input', 'hash', 'codef', 'medm'])
+# parse_one_task('styletransfer', ['bear', 'boat', 'hot-air-ballon', 'overlook-the-ocean', 'shark-ocean'], ['input', 'hash', 'codef', 'medm'])
+# parse_one_task('handwrite', ['train', 'camel', 'cat', 'car-turn', 'tiger'], ['input', 'hash', 'codef', 'medm'])
 parse_one_task('dynamic', ['coral-reef', 'butterfly', 'two-swan', 'woman-drink', 'surf'], ['input', 'hash', 'codef', 'medm'])
