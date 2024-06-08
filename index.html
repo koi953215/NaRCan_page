@@ -88,7 +88,7 @@
                     </li>
                     <li>
                         <a href="">
-                            Shih Han Yen
+                            Shih-Han Yen
                         </a>
                     </li>
                     <li>
@@ -98,7 +98,7 @@
                     </li>
                     <li>
                         <a href="">
-                            Changhan Yeh
+                            Chang-Han Yeh
                         </a>
                     </li>
                     <li>
@@ -116,17 +116,17 @@
                 <div class="col-md-6 col-md-offset-3 text-center">
                     <ul class="nav nav-pills nav-justified">
                         <li>
-                            <a href="https://arxiv.org/abs/2304.06706">
+                            <a href="">
                             <image src="img/narcan_paper_image.jpg" height="60px">
                                 <h4><strong>Paper</strong></h4>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="https://www.youtube.com/watch?v=xrrhynRzC8k">
                             <image src="img/youtube_icon.png" height="60px">
                                 <h4><strong>Video</strong></h4>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="https://github.com/jonbarron/camp_zipnerf">
                             <image src="img/github.png" height="60px">
@@ -214,27 +214,31 @@
             </div>
         </div><br>
 
+
+
+
+
+
+
+
+
         <br>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-				  ReconFusion outperforms other few-view NeRF methods
+                    Text-guided video-to-video translation
                 </h3><br>
 
                 <div class="text-center ">
                     <ul class="nav nav-pills center-pills">
-                        <li class="method-pill active" data-value="zipnerf"
-                            onclick="selectCompVideo(this, activeScenePill)"><a>Zip-NeRF</a></li>
-                        <li class="method-pill" data-value="diffusionerf"
-                            onclick="selectCompVideo(this, activeScenePill)"><a>DiffusioNeRF</a></li>
-                    </ul>
-                    <ul class="nav nav-pills center-pills">
-                        <li class="method-pill" data-value="freenerf"
-                            onclick="selectCompVideo(this, activeScenePill)"><a>FreeNeRF</a></li>
-                        <li class="method-pill" data-value="simplenerf"
-                            onclick="selectCompVideo(this, activeScenePill)"><a>SimpleNeRF</a></li>
-                        <li class="method-pill" data-value="zeronvs"
-                            onclick="selectCompVideo(this, activeScenePill)"><a>ZeroNVS</a></li>
+                        <li class="method-pill" data-value="input"
+                            onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>Input</a></li>
+                            <li class="method-pill" data-value="hash"
+                                onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>Hashing-nvd</a></li>
+                        <li class="method-pill active" data-value="codef"
+                            onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>CoDeF</a></li>
+                        <li class="method-pill" data-value="medm"
+                            onclick="selectCompVideo('styletransfer', this, activeScenePill)"><a>MeDM</a></li>
                     </ul>
                 </div>
 
@@ -247,7 +251,7 @@
                 <div class="text-center">
                     <div class="video-container">
                         <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0" loop playsinline autoplay muted>
-                            <source src="videos/comparison/mipnerf360_bonsai_zipnerf_vs_ours_rgb.mp4" />
+                            <source src="videos/styletransfer_bear_hash_vs_ours_video.mp4" />
                         </video>
                         <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1" loop playsinline autoplay muted hidden>
                             <source src="videos/comparison/mipnerf360_bonsai_zipnerf_vs_ours_depth.mp4" />
@@ -255,13 +259,17 @@
                     </div>
                     <div class="text-center" style="color: black;" id="mode-pills">
                         <div class="btn-group btn-group-sm">
-                            <span class="btn btn-primary mode-pill active" data-value="rgb"
-                                onclick="selectCompVideo(activeMethodPill, activeScenePill, null, this)">
-                                RGB
+                            <span class="btn btn-primary mode-pill active" data-value="video"
+                                onclick="selectCompVideo('styletransfer', activeMethodPill, activeScenePill, null, this)">
+                                Edited video
                             </span>
-                            <span class="btn btn-primary mode-pill" data-value="depth"
-                                onclick="selectCompVideo(activeMethodPill, activeScenePill, null, this)">
-                                Depth
+                            <span class="btn btn-primary mode-pill" data-value="canonical"
+                                onclick="selectCompVideo('styletransfer', activeMethodPill, activeScenePill, null, this)">
+                                Canonical image
+                            </span>
+                            <span class="btn btn-primary mode-pill" data-value="canonical_edit"
+                                onclick="selectCompVideo('styletransfer', activeMethodPill, activeScenePill, null, this)">
+                                Edited canonical image
                             </span>
                         </div>
                     </div>
@@ -269,7 +277,8 @@
 
                     <br>
                     <p class="text-justify" style="text-align: center;">
-                        Baseline method (left) vs ReconFusion (right). Scene trained on <span id="compVideoValue">9</span> views. Try selecting different methods and scenes!
+                        Text prompt: <span id="textPrompt">1</span><br>
+                        Baseline method (left) vs NaRCan (right). Try selecting different methods and scenes!
                     </p>
                     <script>
                         video0 = document.getElementById("compVideo0");
@@ -295,35 +304,20 @@
                     </script>
 
                     <div class="pill-row scene-pills" id="scene-pills">
-                        <span class="pill scene-pill" data-value="dtu_scan31" onclick="selectCompVideo(activeMethodPill, this, 3)">
+                        <span class="pill scene-pill active" data-value="bear" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
                             <img class="thumbnail-img" src="thumbnails/dtu_scan31_thumbnail.jpg" alt="DTU/scan31" width="64">
                         </span>
-                        <span class="pill scene-pill" data-value="dtu_scan45" onclick="selectCompVideo(activeMethodPill, this, 3)">
+                        <span class="pill scene-pill" data-value="boat" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
                             <img class="thumbnail-img" src="thumbnails/dtu_scan45_thumbnail.jpg" alt="DTU/scan45" width="64">
                         </span>
-                        <span class="pill scene-pill" data-value="llff_fern" onclick="selectCompVideo(activeMethodPill, this, 3)">
+                        <span class="pill scene-pill" data-value="hot-air-ballon" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
                             <img class="thumbnail-img" src="thumbnails/llff_fern_thumbnail.jpg" alt="LLFF/fern" width="64">
                         </span>
-                        <span class="pill scene-pill" data-value="llff_horns" onclick="selectCompVideo(activeMethodPill, this, 3)">
+                        <span class="pill scene-pill" data-value="overlook-the-ocean" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
                             <img class="thumbnail-img" src="thumbnails/llff_horns_thumbnail.jpg" alt="LLFF/horns" width="64">
                         </span>
-                        <span class="pill scene-pill" data-value="re10k_00e8df74b6805da7" onclick="selectCompVideo(activeMethodPill, this, 3)">
+                        <span class="pill scene-pill" data-value="shark-ocean" onclick="selectCompVideo('styletransfer', activeMethodPill, this, 3)">
                             <img class="thumbnail-img" src="thumbnails/re10k_00e8df74b6805da7_thumbnail.jpg" alt="Re10K/sofa" width="64">
-                        </span>
-                        <span class="pill scene-pill" data-value="re10k_000c3ab189999a83" onclick="selectCompVideo(activeMethodPill, this, 3)">
-                            <img class="thumbnail-img" src="thumbnails/re10k_000c3ab189999a83_thumbnail.jpg" alt="Re10K/living room" width="64">
-                        </span>
-                        <span class="pill scene-pill" data-value="co3d_bench_185_19987_38634" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                            <img class="thumbnail-img" src="thumbnails/co3d_bench_185_19987_38634_thumbnail.jpg" alt="CO3D/bench" width="64">
-                        </span>
-                        <span class="pill scene-pill" data-value="co3d_plant_188_20319_36755" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                            <img class="thumbnail-img" src="thumbnails/co3d_plant_188_20319_36755_thumbnail.jpg" alt="CO3D/plant" width="64">
-                        </span>
-                        <span class="pill scene-pill active" data-value="mipnerf360_bonsai" onclick="selectCompVideo(activeMethodPill, this, 9)">
-                            <img class="thumbnail-img" src="thumbnails/mipnerf360_bonsai_thumbnail.jpg" alt="mip-NeRF 360/bonsai" width="64">
-                        </span>
-                        <span class="pill scene-pill" data-value="mipnerf360_kitchen" onclick="selectCompVideo(activeMethodPill, this, 9)">
-                            <img class="thumbnail-img" src="thumbnails/mipnerf360_kitchen_thumbnail.jpg" alt="mip-NeRF 360/kitchen" width="64">
                         </span>
                     </div>
 
@@ -337,6 +331,14 @@
         </div>
         <br>
         <br>
+
+
+
+
+
+
+
+
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -559,8 +561,8 @@
 @article{chen2024narcan,
     title={NaRCan: Natural Refined Canonical Image with 
            Integration of Diffusion Prior for Video Editing},
-    author={Ting-Hsuan Chen and Jiewen Chan and Shih Han Yen and 
-            Hau-Shiang Shiu and Changhan Yeh and Yu-Lun Liu},
+    author={Ting-Hsuan Chen and Jiewen Chan and Shih-Han Yen and 
+            Hau-Shiang Shiu and Chang-Han Yeh and Yu-Lun Liu},
     journal={arXiv},
     year={2024}
 }</textarea>

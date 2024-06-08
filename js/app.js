@@ -23,12 +23,12 @@ $(document).ready(function () {
     resizeAndPlay($('#sparsity')[0]);
 });
 
-function selectCompVideo(methodPill, scenePill, n_views, modePill) {
+function selectCompVideo(task, methodPill, scenePill, n_views, modePill) {
     // Your existing logic for video selection
     // var video = document.getElementById("compVideo");
     select = true;
     var videoSwitch = document.getElementById("compVideoSwitch");
-    var viewNum = document.getElementById("compVideoValue");
+    var textPrompt = document.getElementById("textPrompt");
 
     if (activeMethodPill) {
         activeMethodPill.classList.remove("active");
@@ -49,6 +49,14 @@ function selectCompVideo(methodPill, scenePill, n_views, modePill) {
     pill = scenePill.getAttribute("data-value");
     mode = activeModePill.getAttribute("data-value");
 
+    if (pill == 'dtu_scan45') {
+        textPrompt.innerHTML = 'A camel walking in an enclosure with a wooden fence and greenery in the background, Minecraft world style.';
+    } else if (pill == 'llff_fern') {
+        textPrompt.innerHTML = 'Hot air balloons adrift over an ancient desert, Chibi Animation style.';
+    } else {
+        textPrompt.innerHTML = 'sdfjiosdhfiusdhf';
+    }
+
     // if (videoSwitch.checked) {
     //     mode = 'depth'
     // } else {
@@ -59,10 +67,6 @@ function selectCompVideo(methodPill, scenePill, n_views, modePill) {
     activeVidID = 1 - activeVidID;
     var video_active = document.getElementById("compVideo" + activeVidID);
     var video_hidden = document.getElementById("compVideo" + (1 - activeVidID));
-    video_active.src = "videos/comparison/" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
+    video_active.src = "videos/" + task + "_" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
     video_active.load();
-
-    if (n_views) {
-        viewNum.innerHTML = n_views;
-    }
 }
