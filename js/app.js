@@ -131,8 +131,8 @@ function selectCompVideoHandwrite(task, methodPillHandwrite, scenePillHandwrite,
 
     // swap video to avoid flickering
     activeVidIDHandwrite = 1 - activeVidIDHandwrite;
-    var video_active = document.getElementById("compVideo0_handwrite");
-    var video_hidden = document.getElementById("compVideo" + (1 - activeVidID));
+    var video_active = document.getElementById("compVideo" + activeVidIDHandwrite+ "_handwrite");
+    var video_hidden = document.getElementById("compVideo" + (1 - activeVidIDHandwrite+ "_handwrite"));
     video_active.src = "videos/" + task + "_" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
     video_active.load();
 }
@@ -179,8 +179,8 @@ function selectCompVideoDynamic(task, methodPillDynamic, scenePillDynamic, n_vie
 
     // swap video to avoid flickering
     activeVidIDDynamic = 1 - activeVidIDDynamic;
-    var video_active = document.getElementById("compVideo0_dynamic");
-    var video_hidden = document.getElementById("compVideo" + (1 - activeVidID));
+    var video_active = document.getElementById("compVideo" + activeVidIDDynamic+ "_dynamic");
+    var video_hidden = document.getElementById("compVideo" + (1 - activeVidIDDynamic+ "_dynamic"));
     video_active.src = "videos/" + task + "_" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
     video_active.load();
 }

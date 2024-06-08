@@ -407,6 +407,28 @@
                     <p class="text-justify" style="text-align: center;">
                         Baseline method (left) vs NaRCan (right). Try selecting different methods and scenes!
                     </p>
+                    <script>
+                        video0_handwrite = document.getElementById("compVideo0_handwrite");
+                        video1_handwrite = document.getElementById("compVideo1_handwrite");
+                        video0_handwrite.addEventListener('loadedmetadata', function() {
+                            if (activeVidIDHandwrite == 0 && select){
+                                video0_handwrite.play();
+                                // print video size
+                                console.log(video0_handwrite.videoWidth, video0_handwrite.videoHeight);
+                                video0_handwrite.hidden = false;
+                                video1_handwrite.hidden = true;
+                            }
+                        });
+                        video1_handwrite.addEventListener('loadedmetadata', function() {
+                            if (activeVidIDHandwrite == 1 && select){
+                                video1_handwrite.play();
+                                // print video size
+                                console.log(video1_handwrite.videoWidth, video1_handwrite.videoHeight);
+                                video0_handwrite.hidden = true;
+                                video1_handwrite.hidden = false;
+                            }
+                        });
+                    </script>
                     
                     <div class="pill-row scene-pills-handwrite" id="scene-pills-handwrite">
                         <span class="pill scene-pill-handwrite active" data-value="train" onclick="selectCompVideoHandwrite('handwrite', activeMethodPillHandwrite, this, 3)">
@@ -492,6 +514,28 @@
                     <p class="text-justify" style="text-align: center;">
                         Baseline method (left) vs NaRCan (right). The segmentation mask is acquired using the <a href="https://segment-anything.com/">Segment Anything Model (SAM)</a> based on the learned canonical image and propagated to the sequence. Try selecting different methods and scenes!
                     </p>
+                    <script>
+                        video0_dynamic = document.getElementById("compVideo0_dynamic");
+                        video1_dynamic = document.getElementById("compVideo1_dynamic");
+                        video0_dynamic.addEventListener('loadedmetadata', function() {
+                            if (activeVidIDDynamic == 0 && select){
+                                video0_dynamic.play();
+                                // print video size
+                                console.log(video0_dynamic.videoWidth, video0_dynamic.videoHeight);
+                                video0_dynamic.hidden = false;
+                                video1_dynamic.hidden = true;
+                            }
+                        });
+                        video1_dynamic.addEventListener('loadedmetadata', function() {
+                            if (activeVidIDDynamic == 1 && select){
+                                video1_dynamic.play();
+                                // print video size
+                                console.log(video1_dynamic.videoWidth, video1_dynamic.videoHeight);
+                                video0_dynamic.hidden = true;
+                                video1_dynamic.hidden = false;
+                            }
+                        });
+                    </script>
                     
                     <div class="pill-row scene-pills-dynamic" id="scene-pills-dynamic">
                         <span class="pill scene-pill-dynamic active" data-value="coral-reef" onclick="selectCompVideoDynamic('dynamic', activeMethodPillDynamic, this, 3)">
