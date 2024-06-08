@@ -165,13 +165,16 @@
                 <h3>
 				  <b><font color="#4472c4">NaR</font><font color="#ff0000">Can</font></b> = <font color="#4472c4"><b>Na</b>tural <b>R</b>efined</font> <font color="#ff0000"><b>Can</b>onical Image</font> with <font color="#ed7d31"><b>Diffusion Prior</b></font>
                 </h3>
-                <image src="img/teaser.jpg" width=100% style="display: block; margin: auto;"></image>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="img/method_teaser.mp4" type="video/mp4" />
+                </video>
+                <!-- <image src="img/teaser.jpg" width=100% style="display: block; margin: auto;"></image> -->
                 <br>
                 <p class="text-justify">
                     <b>Video representation with diffusion prior.</b> Given an RGB video, we can represent the video using a canonical image. However, the canonical image and reconstruction training process focuses only on reconstruction quality and could produce an unnatural canonical image. This could cause problems with downstream tasks such as prompt-based video editing. In the bottom example, if the hand is distorted in the canonical image, the image editor, such as ControlNet, may not recognize it and could introduce an irrelevant object instead. In this paper, we propose introducing the <i>diffusion prior</i> from a LoRA fine-tuned diffusion model to the training pipeline and constraining the canonical image to be natural. Our method facilitates several downstream tasks, such as (a) video editing, (b) dynamic segmentation, and (c) video style transfer.
                 </p>
             </div>
-        </div><br>
+        </div>
 
         <br>
         <div class="row">
@@ -185,7 +188,23 @@
                     Given an input video sequence, our method aims to represent the video with a <i>natural</i> canonical image, which is a crucial representation for versatile downstream applications. (a) First, we fine-tune the LoRA weights of a pre-trained latent diffusion model on the input frames. (b) Second, we represent the video using a canonical MLP and a deformation field, which consists of homography estimation and residual deformation MLP for non-rigid residual deformations. By relying entirely on the reconstruction loss, the canonical MLP often fails to represent a natural canonical image, causing problems for downstream applications. <i>E.g.</i>, image-to-image translation methods such as ControlNet may not be able to recognize that there is a train in the canonical image. (c) Therefore, we leverage the fine-tuned latent diffusion model to regularize and correct the unnatural canonical image into a natural one. Specifically, we sophistically design a noise scheduling corresponding to the frame reconstruction process. (d) The natural and artifacts-free canonical image can then be facilitated to various downstream tasks such as video style transfer, dynamic segmentation, and editing, such as adding handwritten characters.
                 </p>
             </div>
-        </div><br>
+        </div>
+        
+        <br>
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Diffusion prior for canonical image refinement
+                </h3>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                  <source src="img/dm_prior.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    (<em>Left</em>) Without diffusion prior to regularizing the canonical image, the training process relies only on the frame reconstruction and could sacrifice the faithfulness of the canonical image. (<em>Right</em>) Our fine-tuned diffusion prior effectively corrects the canonical image to faithfully represent the input frames and results in natural canonical images.
+                </p>
+            </div>
+        </div>
 
         <br>
         <div class="row">
@@ -195,24 +214,14 @@
                 </h3>
                 <image src="img/scheduling.jpg" width=100% style="display: block; margin: auto;"></image>
                 <br>
+                <video id="v0" width="100%" autoplay loop muted controls>
+                    <source src="img/schedule.mp4" type="video/mp4" />
+                </video>
                 <p class="text-justify">
                     Initially, our model fits object outlines before the fields converge and without the diffusion prior, resulting in unnatural elements in the canonical image due to complex non-rigid objects. Upon introducing the diffusion prior with increased noise and update frequency, the model learns to generate natural, high-quality images, leading to convergence. Thus, the strength of noise and the update frequency will also decrease. Moreover, it's worth mentioning that update scheduling cuts training time from 4.8 hours to 20 minutes.
                 </p>
             </div>
-        </div><br>
-
-        <br>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    User study
-                </h3>
-                <image src="img/user_study.jpg" width=100% style="display: block; margin: auto;"></image>
-                <p class="text-justify">
-                    Our method achieves the highest user preference ratios across all three aspects, compared with MeDM, CoDeF, Hashing-nvd.
-                </p>
-            </div>
-        </div><br>
+        </div>
 
 
 
@@ -504,6 +513,18 @@
             </div>
         </div>
         <br>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    User study
+                </h3>
+                <image src="img/user_study.jpg" width=100% style="display: block; margin: auto;"></image>
+                <p class="text-justify">
+                    Our method achieves the highest user preference ratios across all three aspects, compared with MeDM, CoDeF, Hashing-nvd.
+                </p>
+            </div>
+        </div><br>
 
 
 
