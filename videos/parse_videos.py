@@ -159,8 +159,8 @@ def parse_one_task(task, scenes, other_methods):
             
 
             ## canonical image
-            H = 600
-            W = 600
+            H = 432
+            W = 768
             fps = 20.0
             ours_canonical_path = './'+task+'/'+scene+'_ours_canonical.png'
             other_canonical_path = './'+task+'/'+scene+'_'+other_method+'_canonical.png'
@@ -170,10 +170,10 @@ def parse_one_task(task, scenes, other_methods):
             print(other_method)
             for i in range(5):
                 frame_ours = cv2.imread(ours_canonical_path)
-                if frame_ours.shape[0] != 600 or frame_ours.shape[1] != 600:
-                    frame_ours = cv2.resize(frame_ours, (600, 600), interpolation=cv2.INTER_CUBIC)
+                if frame_ours.shape[0] != H or frame_ours.shape[1] != W:
+                    frame_ours = cv2.resize(frame_ours, (W, H), interpolation=cv2.INTER_CUBIC)
                 if other_method is 'input' or other_method is 'medm':
-                    frame_other = np.ones((600, 600, 3), np.uint8)*255
+                    frame_other = np.ones((H, W, 3), np.uint8)*255
                     font = cv2.FONT_HERSHEY_SIMPLEX
                     text = "No canonical image"
 
@@ -181,14 +181,14 @@ def parse_one_task(task, scenes, other_methods):
                     textsize = cv2.getTextSize(text, font, 1, 2)[0]
 
                     # get coords based on boundary
-                    textX = (600 - textsize[0]) // 2
-                    textY = (600 + textsize[1]) // 2
+                    textX = (W - textsize[0]) // 2
+                    textY = (H + textsize[1]) // 2
 
                     # add text centered on image
                     cv2.putText(frame_other, text, (textX, textY), font, 1, (0, 0, 0), 2)
                 else:
                     frame_other = cv2.imread(other_canonical_path)
-                    frame_other = cv2.resize(frame_other, (600, 600), interpolation=cv2.INTER_AREA)
+                    frame_other = cv2.resize(frame_other, (W,H), interpolation=cv2.INTER_CUBIC)
                 # edit here
                 _, frame_ours = draw_text(frame_ours, "Ours", height=H, width=W, align='right')
                 if other_method is 'hash':
@@ -206,8 +206,8 @@ def parse_one_task(task, scenes, other_methods):
             os.system('ffmpeg -y -i '+task+'_'+scene+'_'+other_method+'_vs_ours_canonical.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p '+task+'_'+scene+'_'+other_method+'_vs_ours_canonical.mp4')
             
             ## canonical image edited
-            H = 600
-            W = 600
+            H = 432
+            W = 768
             fps = 20.0
             ours_canonical_path = './'+task+'/'+scene+'_ours_canonical_edit.png'
             other_canonical_path = './'+task+'/'+scene+'_'+other_method+'_canonical_edit.png'
@@ -216,10 +216,10 @@ def parse_one_task(task, scenes, other_methods):
             out = cv2.VideoWriter(task+'_'+scene+'_'+other_method+'_vs_ours_canonical_edit.avi', fourcc, fps, (2*W,  H))
             for i in range(5):
                 frame_ours = cv2.imread(ours_canonical_path)
-                if frame_ours.shape[0] != 600 or frame_ours.shape[1] != 600:
-                    frame_ours = cv2.resize(frame_ours, (600, 600), interpolation=cv2.INTER_CUBIC)
+                if frame_ours.shape[0] != H or frame_ours.shape[1] != W:
+                    frame_ours = cv2.resize(frame_ours, (W, H), interpolation=cv2.INTER_CUBIC)
                 if other_method is 'input' or other_method is 'medm':
-                    frame_other = np.ones((600, 600, 3), np.uint8)*255
+                    frame_other = np.ones((H, W, 3), np.uint8)*255
                     font = cv2.FONT_HERSHEY_SIMPLEX
                     text = "No canonical image"
 
@@ -227,14 +227,14 @@ def parse_one_task(task, scenes, other_methods):
                     textsize = cv2.getTextSize(text, font, 1, 2)[0]
 
                     # get coords based on boundary
-                    textX = (600 - textsize[0]) // 2
-                    textY = (600 + textsize[1]) // 2
+                    textX = (W - textsize[0]) // 2
+                    textY = (H + textsize[1]) // 2
 
                     # add text centered on image
                     cv2.putText(frame_other, text, (textX, textY), font, 1, (0, 0, 0), 2)
                 else:
                     frame_other = cv2.imread(other_canonical_path)
-                    frame_other = cv2.resize(frame_other, (600, 600), interpolation=cv2.INTER_AREA)
+                    frame_other = cv2.resize(frame_other, (W, H), interpolation=cv2.INTER_CUBIC)
                 # edit here
                 _, frame_ours = draw_text(frame_ours, "Ours", height=H, width=W, align='right')
                 if other_method is 'hash':

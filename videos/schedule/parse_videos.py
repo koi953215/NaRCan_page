@@ -45,15 +45,16 @@ def draw_text(img, text,
     return text_size, img
 
 
-H = 432
-W = 768
 fps = 30.0
 min_iter = 1
 max_iter = 12
 min_time = 0
-max_time = 1222
+# max_time = 1222
+# video_name = 'bear_with_schedule'
+max_time = 17332
+video_name = 'bear_no_schedule'
 
-cap_ours = cv2.VideoCapture('bear_with_schedule.mp4')
+cap_ours = cv2.VideoCapture(video_name+'.mp4')
 
 # Define the codec and create VideoWriter object
 counter = 0
@@ -72,9 +73,9 @@ total_frames = counter
 print(total_frames)
 
 # Define the codec and create VideoWriter object
-cap_ours = cv2.VideoCapture('bear_with_schedule.mp4')
+cap_ours = cv2.VideoCapture(video_name+'.mp4')
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('bear_with_schedule_time.avi', fourcc, fps, (512,  512))
+out = cv2.VideoWriter(video_name+'_time.avi', fourcc, fps, (512,  288))
 counter = 0
 while cap_ours.isOpened():
     ret_ours, frame_ours = cap_ours.read()
@@ -95,11 +96,11 @@ while cap_ours.isOpened():
     
     
     
-
+    frame_ours = cv2.resize(frame_ours, (512, 288), interpolation=cv2.INTER_AREA)
 
     # edit here
-    _, frame_ours = draw_text(frame_ours, "Step: "+str(iter)+"k", height=512, width=512, align='left')
-    _, frame_ours = draw_text(frame_ours, "Elapsed: "+show_time, height=512, width=512, align='right')
+    _, frame_ours = draw_text(frame_ours, "Step: "+str(iter)+"k", height=288, width=512, align='left')
+    _, frame_ours = draw_text(frame_ours, "Elapsed: "+show_time, height=288, width=512, align='right')
 
     out.write(frame_ours)
     counter+=1
@@ -108,5 +109,5 @@ cap_ours.release()
 out.release()
 cv2.destroyAllWindows()
 
-os.system('ffmpeg -y -i bear_with_schedule_time.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p bear_with_schedule_time.mp4')
+os.system('ffmpeg -y -i '+video_name+'_time.avi -c:v libx264 -preset veryslow -crf 23 -pix_fmt yuv420p '+video_name+'_time.mp4')
             
