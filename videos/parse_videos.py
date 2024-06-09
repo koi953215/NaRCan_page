@@ -258,5 +258,5 @@ def parse_one_task(task, scenes, other_methods):
             os.system('ffmpeg -y -i ./'+task+'/'+scene+'_input.mp4 -vf "select=eq(n\,0)" -q:v 3 ../thumbnails/'+task+'_'+scene+'_thumbnail.jpg')
 
 # parse_one_task('styletransfer', ['bear', 'boat', 'hot-air-ballon', 'overlook-the-ocean', 'shark-ocean'], ['input', 'hash', 'codef', 'medm'])
-# parse_one_task('handwrite', ['train', 'camel', 'cat', 'car-turn', 'tiger'], ['input', 'hash', 'codef', 'medm'])
-parse_one_task('dynamic', ['coral-reef', 'butterfly', 'two-swan', 'woman-drink', 'surf'], ['input', 'hash', 'codef', 'medm'])
+parse_one_task('handwrite', ['train', 'camel', 'cat', 'car-turn', 'tiger'], ['input', 'hash', 'codef', 'medm'])
+# parse_one_task('dynamic', ['coral-reef', 'butterfly', 'two-swan', 'woman-drink', 'surf'], ['input', 'hash', 'codef', 'medm'])
